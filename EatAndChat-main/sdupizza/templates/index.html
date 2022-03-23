@@ -1,0 +1,403 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, noodp">
+    <meta name="googlebot" content="index, follow">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
+    <link rel="stylesheet" href="{% static 'main.css'%}">
+
+    <script type="text/javascript">
+        let user = '{{request.user}}'
+
+
+        function getCookie(name) {
+            let cookieValue = null;
+
+            if (document.cookie && document.cookie != '') {
+                let cookies = document.cookie.split(';');
+
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+
+                        break;
+                    }
+                }
+            }
+
+            return cookieValue;
+        }
+
+        let csrftoken = getCookie('csrftoken');
+    </script>
+
+    <title>Main</title>
+
+    <style>
+        .nav__header a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+
+            color: #161c2d;
+
+            text-decoration: none;
+
+            margin-right: 20px;
+
+        }
+
+        .nav__header {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav--color {
+            font-size: 1.6rem;
+            color: #696F7A;
+        }
+
+        .section {
+            position: relative;
+        }
+
+        .section__img {
+            position: absolute;
+            z-index: -2;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Pasta */
+
+        .section__title--pasta {
+            color: #F7D22D;
+        }
+
+        .section__inner {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .section__block {
+            width: 25%;
+    
+            margin-bottom: 2rem;
+        }
+
+
+        /* Content */
+
+        .section__block img {
+            margin: 0 auto;
+        }
+
+        .section__content {
+            padding: 10px 15px;
+        }
+
+        .content__title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: bold;
+
+            color: #797979;
+
+            margin-bottom: 1.4rem;
+        }
+
+        .content__sutitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: normal;
+            color: #646866;
+            font-size: 1.3rem;
+
+            margin-bottom: 2.3rem;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .content__price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 2.2rem;
+            color: #161c2d;
+        }
+
+        .content__btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 1.4rem;
+
+            padding: 4px 23px;
+            border: none;
+            background-color: #F7D22D;
+
+            color: white;
+            border-radius: 8px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page -->
+
+
+
+    <div class="page">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="container">
+                <div class="row header__row">
+                    <div class="col-lg-1">
+                        <img class="img" src="https://via.placeholder.com/50x50" alt="">
+                    </div>
+                    <div class="col-lg-5">
+                        <address class="address">
+                            Доставка еды <span>Almaty</span>
+                        </address>
+
+                        <div class="delivery">
+                            <img src="{% static 'img/image 31.svg' %}" alt=""> Яндекс еда - 4.8 <img
+                                src="{% static 'img/map.svg' %}" alt=""> Время доставки - от 31 мин
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="button">
+                            <button class="call_btn">Заказать звонок</button>
+                            <a class="tel_link" href="tel:84993918449">+7 (776) 358-71-51</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                {% url 'form' as form_link %}
+
+                <nav class="nav__header" style="margin-top: 10px;">
+                    {% if request.user.is_staff %}
+                    <a class="nav__link-header" href="#">Пица</a>
+                    <a class="nav__link" href="#">Паста</a>
+                    <a class="nav__link" href="#">Супы</a>
+                    <a class="nav__link" href="#">Салаты</a>
+                    <a class="nav__link" href="#">Напитки</a>
+                    <a class="nav__link" href="#">Десерты</a>
+                    <a class="nav__link" href="#">Антипасти</a>
+                    <a class="nav__link" href="#">Акции</a>
+                    <a class="nav__link" href="#">Комбо</a>
+                    <a class="nav__link" href="#">Контакты</a>
+                    <a class="nav__link" href="#">Звонок</a>
+
+                    <a class="nav__link nav--color" href="{% url 'form' %}">Войти</a>
+                    <a class="nav__link" href="#">Профиль</a>
+                    <a class="nav__link" href="{% url 'logout' %}">Logout</a>
+                    <button class="nav_btn" href=""><a href="{% url 'basket' %}">Корзина | <span class="nav_clean">{{cartItems}}</span></a></button>
+                    {% endif %}
+                </nav>
+            </div> <!-- /.container -->
+        </header> <!-- /.header -->
+
+
+        <!-- Slider -->
+
+        <div class="slider">
+
+            <div class="container">
+
+                <div class="offer__slider">
+                    <div class="offer__slider-counter">
+                        <button class="arrow left" id="offer__slider-prev">
+                            <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+                                <polyline fill="none" stroke="#000" stroke-width="1" stroke-linecap="round"
+                                    stroke-linejoin="round" points="
+                          45.63,75.8 0.375,38.087 45.63,0.375 " />
+                            </svg>
+                        </button>
+                        <button class="arrow right" id="offer__slider-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+                                <polyline fill="none" stroke="#000" stroke-width="1" stroke-linecap="round"
+                                    stroke-linejoin="round" points="
+                          0.375,0.375 45.63,38.087 0.375,75.8 " />
+                            </svg>
+                        </button>
+
+                    </div>
+                    <div class="offer__slider-wrapper">
+                        <div class="offer__slider-inner">
+                            <div class="offer__slide">
+                                <img src="{% static 'img/slider/image 5.png' %}" alt="pepper">
+                            </div>
+                            <div class="offer__slide">
+                                <img src="{% static 'img/slider/image 31.png' %}" alt="food">
+                            </div>
+                            <div class="offer__slide">
+                                <img src="{% static 'img/slider/image 5.png' %}" alt="oil">
+                            </div>
+                            <div class="offer__slide">
+                                <img src="{% static 'img/slider/image 31.png' %}" alt="paprika">
+                            </div>
+                            <div class="offer__slide">
+                                <img src="{% static 'img/slider/image 5.png' %}" alt="oil">
+                            </div>
+                            <div class="offer__slide">
+                                <img src="{% static 'img/slider/image 31.png' %}" alt="paprika">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div> <!-- /.container -->
+
+        </div> <!-- /.slider -->
+
+
+        <!-- New -->
+
+        <section class="section">
+
+            <img class="img section__img" src="{% static 'img/image 14.png' %}" alt="">
+
+            <div class="container">
+                <h1 class="section__title">Новинки</h1>
+                <div class="row section__f">
+                    <div class="col-lg-3 block_flex">
+                        <img src="{% static 'img/image 8.png' %}" alt="">
+                        <h4 class="text">Карбонара <br> <span>от 120 ₽</span></h4>
+                    </div>
+
+                    <div class="col-lg-3 block_flex">
+                        <img src="{% static 'img/image 8.png' %}" alt="">
+                        <h4 class="text">Карбонара <br> <span>от 120 ₽</span></h4>
+                    </div>
+
+                    <div class="col-lg-3 block_flex">
+                        <img src="{% static 'img/image 8.png' %}" alt="">
+                        <h4 class="text">Карбонара <br> <span>от 120 ₽</span></h4>
+                    </div>
+
+                    <div class="col-lg-3 block_flex">
+                        <img src="{% static 'img/image 8.png' %}" alt="">
+                        <h4 class="text">Карбонара <br> <span>от 120 ₽</span></h4>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <!-- Pasta -->
+
+
+        <section class="section">
+            <div class="container">
+                <div class="section__title section__title--pasta">Паста</div>
+                <div class="section__inner">
+
+                    {% for cart in carts %}
+                    <div class="section__block">
+                        <img class="img" src="{{cart.imageUrl}}" alt="">
+
+                        <div class="section__content">
+                            <h3 class="content__title">{{cart.img_name}}</h3>
+                            <p class="content__sutitle">{{cart.img_subtitle}}</p>
+                            <div class="price">
+                            <h4 class="content__price">От {{cart.img_price|floatformat:0}}$</h4>
+                            <button data-cart="{{ cart.id }}" data-action="add" class="content__btn update-cart">В корзину</button>
+                        </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" integrity="sha512-hCP3piYGSBPqnXypdKxKPSOzBHF75oU8wQ81a6OiGXHFMeKs9/8ChbgYl7pUvwImXJb03N4bs1o1DzmbokeeFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{% static 'js/main.js'%}"></script>
+
+<script type="text/javascript">
+    let updateBtns = document.getElementsByClassName('update-cart');
+
+    for (let i = 0; i < updateBtns.length; i++) {
+        updateBtns[i].addEventListener('click', function() {
+            let cartId = this.dataset.cart;
+            let action = this.dataset.action;
+
+            console.log('cartId: ', cartId, 'actions: ', action)
+
+            console.log('User: ', user)
+
+            if (user === 'AnonymousUser') {
+                console.log('Not logged in');
+            } else {
+                updateUserOrder(cartId, action)
+            }
+        })
+    }
+
+
+    function updateUserOrder(cartId, action) {
+        console.log('User is logged, loading please...');
+
+        let url = '/update_item/';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({'cartId': cartId, 'action': action})
+        }).then((response) => {
+            return response.json()
+        }).then((data) => {
+            console.log('data: ', data)
+            location.reload()
+        });
+    }
+
+</script>
+
+
+</body>
+
+</html>
