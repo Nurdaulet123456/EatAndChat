@@ -1,0 +1,366 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>User Page</title>
+</head>
+
+<style>
+    html {
+    font-size: 65.05%;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+
+    font-size: 1.6rem;
+    line-height: 1.5;
+
+    color: #161c2d;
+
+}
+
+:root {
+    --color: #F7D22D;
+    --text: #231F20;
+    --input: #696F7A;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 0;
+}
+
+li,ol,ul {
+    list-style: none;
+}
+
+.user {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    background-color: #F3F3F7;
+}
+
+.user__title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--color);
+
+    margin-bottom: 30px;
+}
+
+img {
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+}
+
+.username {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 26px;
+    color: black;
+
+    margin-bottom: 30px;
+}
+
+.profile__title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 350px;
+    /* background: rgba(241, 242, 245, 0.6); */
+    background-color: white;
+    border: 1.5px solid #E3ECF5;
+    border-radius: 8px;
+
+    padding: 10px 19px;
+    margin-bottom: 10px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+
+    color: var(--text);
+    opacity: .82;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.input > a {
+    text-decoration: none;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color);
+
+    text-align: right;
+}
+
+.user_btn {
+    display: inline-block;
+    margin-top: 30px;
+    background: #E3ECF5;
+    border-radius: 8px;
+
+    border: none;
+
+    padding: 12px 40px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--input);
+    margin-right: 10px;
+}
+
+.header {
+    background-color: white;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 100000;
+
+}
+
+
+.header__row {
+    align-items: center;
+    height: 80px;
+}
+
+/* Address */
+
+.address {
+    margin-bottom: 0;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.address span {
+    font-weight: normal;
+    color: var(--moreColor);
+}
+
+/* Delivery */
+
+.delivery {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Button */
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.call_btn {
+    display: inline-block;
+
+    border: none;
+    border-radius: 28px;
+    background-color: #F3F3F7;
+
+    padding: 7px 27px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;    
+    color: #696F7A;
+
+}
+
+.call_btn:hover {
+    color: #878788;
+}
+
+.tel_link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.6rem;
+    font-weight: bold;
+
+    color: var(--moreColor);
+
+    margin-left: 2.8rem;
+
+    text-decoration: none;
+}
+
+.tel_link:hover {
+    color: var(--moreColor);
+    text-decoration: underline;
+}
+
+
+.nav_btn {
+    padding: 7px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: var(--blackColor);
+
+    font-weight: bold;
+
+    background-color: #F7D22D;
+
+    
+}
+
+.nav__header a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+
+            color: #161c2d;
+
+            text-decoration: none;
+
+            margin-right: 20px;
+
+        }
+
+        .nav__header {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav--color {
+            font-size: 1.6rem;
+            color: #696F7A;
+        }
+
+        .section {
+            position: relative;
+        }
+
+        .section__img {
+            position: absolute;
+            z-index: -2;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+</style>
+
+<body>
+
+
+    <header class="header">
+        <div class="container">
+            <div class="row header__row">
+                <a class="col-lg-1" href="#">
+                    <img class="img" src="https://via.placeholder.com/50x50" alt="">
+                </a>
+                <div class="col-lg-5">
+                    <address class="address">
+                        Доставка еды <span>Almaty</span>
+                    </address>
+
+                    <div class="delivery">
+                        <img src="{% static 'img/image 31.svg' %}" alt=""> Яндекс еда - 4.8 <img
+                            src="{% static 'img/map.svg' %}" alt=""> Время доставки - от 31 мин
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="button">
+                        <button class="call_btn">Заказать звонок</button>
+                        <a class="tel_link" href="tel:84993918449">+7 (776) 358-71-51</a>
+                    </div>
+                </div>
+
+            </div>
+
+            {% url 'form' as form_link %}
+
+            <nav class="nav__header" style="margin-top: 10px;">
+                <a class="nav__link-header" href="#">Пица</a>
+                <a class="nav__link" href="#">Паста</a>
+                <a class="nav__link" href="#">Супы</a>
+                <a class="nav__link" href="#">Салаты</a>
+                <a class="nav__link" href="#">Напитки</a>
+                <a class="nav__link" href="#">Десерты</a>
+                <a class="nav__link" href="#">Антипасти</a>
+                <a class="nav__link" href="#">Акции</a>
+                <a class="nav__link" href="#">Комбо</a>
+                <a class="nav__link" href="#">Контакты</a>
+                <a class="nav__link" href="#">Звонок</a>
+                <a class="nav__link" href="{% url 'profile' %}">Профиль</a>
+                <button class="nav_btn" href=""><a href="{% url 'basket' %}">Корзина | <span class="nav_clean">{{cartItems}}</span></a></button>
+            </nav>
+        </div> <!-- /.container -->
+    </header> <!-- /.header -->
+      
+    <div class="user">
+        <div class="container">
+            {% if users.is_authenticated %}
+            <div class="user__title">Личные данные</div>
+            <div class="user__inner">
+                <img src="https://via.placeholder.com/200x200" alt="">
+                
+                <h1 class="username">{{users.customer.name}}</h1>
+                <div>
+                    <p class="profile__title">Имя</p>
+                    <div class="input">{{users.customer.user}} <a href="#">Изменить</a></div>
+                </div>
+                <div>
+                    <p class="profile__title">Почта</p>
+                    <div class="input">{{request.user.email}}</div>
+                </div>
+
+                <button class="user_btn"><a href="{% url 'logout' %}" style="text-decoration: none; color: #696F7A;">Выйти</a></button>
+                <button class="user_btn">Изменить</button>
+            
+            {% else %}
+                <div class="user__title">Sorry first should login account</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+</body>
+</html>

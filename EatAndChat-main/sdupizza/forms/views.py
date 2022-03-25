@@ -1,5 +1,3 @@
-
-from unicodedata import name
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
@@ -28,7 +26,7 @@ def registerPage(request):
             username = form.cleaned_data.get('username')
 
             
-            messages.success(request, 'Account was created successfully ' + username)
+            messages.success(request, 'Account was created successfully ')
                 
             return redirect('form')
 
@@ -68,11 +66,37 @@ def UserPage(request):
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cartItems = ['get_cart_items']
+        cartItems = ''
 
     carts = Image.objects.all()
     context = {'carts': carts, 'cartItems': cartItems}
     return render (request, 'user.html', context)
+
+
+
+
+@login_required(login_url='form')
+@allowed_users(allowed_roles=['admin', 'customer'])
+def profilePage(request):
+    users = request.user
+    user = Customer.objects.all()
+
+
+    if request.method == "POST":
+        customer = request.user.customer.order_set.all()
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = ''
+
+    context = {'users': users, 'user': user,'cartItems': cartItems}
+    return render(request, 'profile.html', context)
+
+
+
 
 
 @login_required(login_url='form')
@@ -106,7 +130,7 @@ def basket(request):
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cartItems = ['get_cart_items']
+        cartItems = ''
     
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'basket.html', context)

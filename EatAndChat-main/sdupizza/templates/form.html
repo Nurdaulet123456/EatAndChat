@@ -14,22 +14,21 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background-color: white;
 		}
 		.user_card {
-			width: 350px;
+			width: 650px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
 			position: relative;
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
-			padding: 10px;
+			padding: 40px;
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
+			border-radius:10px;
 
 		}
 
@@ -39,18 +38,21 @@
 
 		#form-title{
 			color: #fff;
-
 		}
-
 		.login_btn {
+			display: block;
 			width: 100%;
-			background: #33ccff !important;
 			color: white !important;
+			padding: 10px 0;
+			background-color: #f7ba5b;
+			font-weight: bold;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
 			outline: 0px !important;
 		}
+
+
 		.login_container {
 			padding: 0 2rem;
 		}
@@ -62,65 +64,63 @@
 		}
 		.input_user,
 		.input_pass:focus {
+			width: 100%;
 			box-shadow: none !important;
 			outline: 0px !important;
 		}
 
+		#form-title {
+			color: black;
+			font-weight: bold;
+			font-size: 26px;
+		}
+
+
 		#messages{
-			background-color: grey;
-			color: #fff;
+			background-color: rgb(0, 124, 41);
+			color: rgb(88, 245, 96);
 			padding: 10px;
-			margin-top: 10px;
 		}
 	</style>
 
 </head>
 <body>
+	{% for message in messages %}
+				    <p id="messages">{{message}}</p>
+
+				{% endfor %}
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
-				<div class="d-flex justify-content-center">
-
-
-					<h3 id="form-title">LOGIN</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
+					<h3 id="form-title" style="text-align: center;">Войти</h3>
+			
+				<div class="form_container">
 					<form method="POST" >
 						{% csrf_token %}
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
+						<div class="input-group mb-4">
 							<input type="text" name="username" placeholder="Username..." class="form-control">
 						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
+						<div class="input-group mb-4">
 								<input type="password" name="password" placeholder="Password..." class="form-control" >
 						</div>
 
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 				<input class="btn login_btn" type="submit" value="Login">
+				 				<button class="btn login_btn" type="submit">Войти</button>
 				   			</div>
 					</form>
 
 				</div>
 
-				{% for message in messages %}
-				    <p id="messages">{{message}}</p>
-
-				{% endfor %}
-
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+						Если у вас нет аккаунт: <a href="{% url 'register' %}" class="ml-2">Регистрация</a>
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</div>
+	
 </body>
 
 </html>

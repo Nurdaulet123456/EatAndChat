@@ -214,9 +214,9 @@
                     <a class="nav__link" href="#">Комбо</a>
                     <a class="nav__link" href="#">Контакты</a>
                     <a class="nav__link" href="#">Звонок</a>
-
+                   
                     <a class="nav__link nav--color" href="{% url 'form' %}">Войти</a>
-                    <a class="nav__link" href="#">Профиль</a>
+                    <a class="nav__link" href="{% url 'profile' %}">Профиль</a>
                     <a class="nav__link" href="{% url 'logout' %}">Logout</a>
                     <button class="nav_btn" href=""><a href="{% url 'basket' %}">Корзина | <span class="nav_clean">{{cartItems}}</span></a></button>
                     {% endif %}
